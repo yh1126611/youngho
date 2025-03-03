@@ -14,8 +14,8 @@ output_file=$3
 calculate_cpg() {
     local seq=$(echo $1 | tr '[:lower:]' '[:upper:]')  # Convert to uppercase
     local cpg_count=$(echo $seq | grep -o 'CG' | wc -l)
-    local total_count=$((${#seq} - 1))  # Subtract 1 for dinucleotide count
-    echo "scale=4; $cpg_count / $total_count" | bc
+    local total_count=${#seq}  # Total number of letters in the sequence
+    echo "scale=4; ($cpg_count * 2) / $total_count" | bc
 }
 
 # Create header for output file
