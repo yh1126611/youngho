@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Check if required arguments are provided
 if [ $# -ne 3 ]; then
     echo "Usage: $0 <genome.fasta> <coordinates.txt> <output.tsv>"
