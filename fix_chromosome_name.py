@@ -19,7 +19,7 @@ assembled_molecule_magic_no = assembled_molecule - 1
 
 file = open(file_name, "r")
 sequence_report = open(sequence_report_name, "r")
-fixed_file = ".".join(re.split("\.", file_name)[:-1]) + "_chrNameFixed." + re.split("\.", file_name)[-1]
+fixed_file = ".".join(re.split(r"\.", file_name)[:-1]) + "_chrNameFixed." + re.split(r"\.", file_name)[-1]
 
 command = "sed"
 count = 0
