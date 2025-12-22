@@ -5,7 +5,7 @@ import re
 import subprocess
 
 file_name = input("Enter name of file to fix chromosome names for (incl. extension): ")
-sequence_report_name = input("Enter sequence report file name (incl. extension): ")
+sequence_report_name = input("Enter sequence report file name (incl. extension) (If it is sequence_report.tsv, just press enter.)")
 if not sequence_report_name:  # user just pressed Enter
     sequence_report_name = "sequence_report.tsv"
 current_format = input("Which column contains the current chromosome names:(col. no.):")
