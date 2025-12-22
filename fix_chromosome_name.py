@@ -6,6 +6,8 @@ import subprocess
 
 file_name = input("Enter name of file to fix chromosome names for (incl. extension): ")
 sequence_report_name = input("Enter sequence report file name (incl. extension): ")
+if not sequence_report_name:  # user just pressed Enter
+    sequence_report_name = "sequence_report.tsv"
 current_format = input("Which column contains the current chromosome names:(col. no.):")
 new_format = input("Which column contains the chromosome naming format you want to change into(col. no.):")
 assembled_molecule = input("Which column tells you if the sequence is an assembled molecule (col. no.):")
