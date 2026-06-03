@@ -1,8 +1,11 @@
 # Generates a diced (i.e. every BED entry divided into lines of 1 bp with 4th column content preserved) version of a bedgraph file.
+# Preferrably, used on cell type-specific methylation (CGN, CHN) readings in large block windows from UCSC.
+# Usage: python3 bedgraph_dicer.py your_data.bedgraph
+# Output: your_data_perbase.mp
 
 import re
 
-bedfilename = input("Name of bedgraph file providing regional estimated MP?:")
+bedfilename = sys.argv[1]
 bedfile = open(bedfilename, "r")
 outfilename_array = re.split(r"\.", bedfilename)
 outfilename_array.pop(-1)
