@@ -27,14 +27,22 @@ command = "sed"
 count = 0
 
 for sequence_report_line in sequence_report:
-    current_name = re.split("\t", sequence_report_line)[current_format_magic_no]
-    new_name = re.split("\t", sequence_report_line)[new_format_magic_no]
-    if len(re.split("\t", sequence_report_line)) > assembled_molecule_magic_no:
-        if re.split("\t|\n", sequence_report_line)[assembled_molecule_magic_no]=="assembled-molecule":
-            if count == 0:
-                command = ''.join([command, " '"])
-            command = ''.join([command, "s/", current_name, "/", new_name, "/g;"])
-            count+=1
+    # Skip comment/header lines in the assembly report
+    if sequence_report_line.startswith("#"):
+        continue
+
+    fields = re.split("\t", sequence_report_line.rstrip("\n"))
+    if len(fields) <= assembled_molecule_magic_no:
+        continue
+
+    current_name = fields[current_format_magic_no]
+    new_name = fields[new_format_magic_no]
+
+    if fields[assembled_molecule_magic_no] == "assembled-molecule":
+        if count == 0:
+            command = ''.join([command, " '"])
+        command = ''.join([command, "s/", current_name, "/", new_name, "/g;"])
+        count += 1
 command = command[:-1] + "'"
 command = ' '.join([command, file_name])
 command = ' '.join([command, '>', fixed_file])
